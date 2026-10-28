@@ -103,7 +103,7 @@ git tag v1.0.1
 git push origin v1.0.1
 ```
 
-The workflow verifies that the tag and `Info.plist` version match, builds a universal app, packages `FloatingCamera.zip`, and creates the GitHub Release.
+The workflow verifies that the tag and `Info.plist` version match, builds a universal app, packages `FloatingCamera.zip`, and creates the GitHub Release using `RELEASE_NOTES.md`.
 
 For a local build with updates enabled:
 

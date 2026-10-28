@@ -77,7 +77,7 @@ Allow camera access on first launch. Click the aperture icon in the menu bar.
 
 Resolution and Frame Rate fall back to the closest preset supported by the camera. **Language** can be System (default), English or Español; System follows the macOS language.
 
-Drag inside the overlay to move it. Use the **Size** slider to resize; the overlay keeps the selected shape's aspect ratio. The app does not steal focus until you click the overlay.
+Drag inside the overlay to move it. Use the **Size** slider to resize; the overlay keeps the selected shape's aspect ratio. Right-click the overlay for **Hide Camera**, **Reset Position** and **Quit**. The app does not steal focus until you click the overlay.
 
 ### Resolution and performance
 

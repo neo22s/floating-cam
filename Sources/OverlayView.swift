@@ -11,6 +11,8 @@ final class OverlayView: NSView {
     private let borderLayer = CAShapeLayer()
     private var settings: AppSettings
 
+    var onContextMenu: (() -> NSMenu?)?
+
     override var isOpaque: Bool { false }
 
     init(session: AVCaptureSession, settings: AppSettings) {
@@ -76,6 +78,16 @@ final class OverlayView: NSView {
 
     override func mouseDown(with event: NSEvent) {
         window?.performDrag(with: event)
+    }
+
+    override func menu(for event: NSEvent) -> NSMenu? {
+        onContextMenu?()
+    }
+
+    override func rightMouseDown(with event: NSEvent) {
+        guard let menu = onContextMenu?() else { return }
+        NSApp.activate(ignoringOtherApps: true)
+        NSMenu.popUpContextMenu(menu, with: event, for: self)
     }
 
     private func updateLayers() {

@@ -294,6 +294,10 @@ final class AppController {
         ) { [weak self] origin in
             self?.persistOrigin(origin)
         }
+        controller.onContextMenu = { [weak self] in
+            self?.menu.overlayContextMenu()
+        }
+
         overlay = controller
         settings.customWidth = Double(frame.width)
         settings.setOrigin(frame.origin)

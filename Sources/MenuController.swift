@@ -147,6 +147,37 @@ final class MenuController: NSObject, NSMenuDelegate {
         refresh()
     }
 
+    func overlayContextMenu() -> NSMenu {
+        let menu = NSMenu()
+        let hide = NSMenuItem(
+            title: L10n.s("Hide Camera", "Ocultar cámara"),
+            action: #selector(hideOverlayFromContext),
+            keyEquivalent: ""
+        )
+        hide.target = self
+        menu.addItem(hide)
+
+        let reset = NSMenuItem(
+            title: L10n.s("Reset Position", "Restablecer posición"),
+            action: #selector(resetPosition),
+            keyEquivalent: ""
+        )
+        reset.target = self
+        menu.addItem(reset)
+
+        menu.addItem(.separator())
+
+        let quit = NSMenuItem(
+            title: L10n.s("Quit Floating Camera", "Salir de Floating Camera"),
+            action: #selector(quit),
+            keyEquivalent: ""
+        )
+        quit.target = self
+        menu.addItem(quit)
+
+        return menu
+    }
+
     func refresh() {
         guard let app else { return }
         let settings = app.settings
@@ -519,6 +550,10 @@ final class MenuController: NSObject, NSMenuDelegate {
 
     @objc private func toggleAlwaysOnTop() {
         app?.toggleAlwaysOnTop()
+    }
+
+    @objc private func hideOverlayFromContext() {
+        app?.hideOverlay()
     }
 
     @objc private func resetPosition() {

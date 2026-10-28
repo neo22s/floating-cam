@@ -13,6 +13,8 @@ final class OverlayWindowController: NSWindowController, NSWindowDelegate {
     private let onOriginChanged: (CGPoint) -> Void
     private var settings: AppSettings
 
+    var onContextMenu: (() -> NSMenu?)?
+
     var windowFrame: NSRect { window?.frame ?? .zero }
     var screen: NSScreen? { window?.screen ?? NSScreen.main }
 
@@ -54,6 +56,9 @@ final class OverlayWindowController: NSWindowController, NSWindowDelegate {
             .ignoresCycle
         ]
 
+        overlayView.onContextMenu = { [weak self] in
+            self?.onContextMenu?()
+        }
     }
 
     required init?(coder: NSCoder) {

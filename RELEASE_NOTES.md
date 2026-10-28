@@ -1,6 +1,12 @@
-# Floating Camera 1.0.0
+# Floating Camera 1.0.1
 
 A lightweight, native macOS menu bar app that keeps your camera floating above everything else. No Dock icon, no Electron, no account, no analytics.
+
+## What's new in 1.0.1
+
+- **Right-click or two-finger tap** the overlay for Hide Camera, Reset Position and Quit.
+- **Red** added to Border → Color.
+- Reliable context-menu activation while another app is focused.
 
 ![Floating Camera shapes](https://raw.githubusercontent.com/neo22s/floating-cam/master/assets/shapes.png)
 
@@ -33,7 +39,7 @@ The aperture icon appears in the menu bar. Click it to open the menu.
 - **Hide Camera** — hides the overlay and stops the capture session. Use `⌃⌥H` from anywhere.
 - **Quit** — quits the app.
 
-Drag anywhere inside the overlay to move it. **Reset Position** centers it on the current screen.
+Drag anywhere inside the overlay to move it. **Reset Position** centers it on the current screen. Right-click the overlay (or use a two-finger tap) for **Hide Camera**, **Reset Position** and **Quit Floating Camera**.
 
 The UI follows macOS by default. You can force **English** or **Español** in **Advanced → Language**.
 
@@ -65,9 +71,15 @@ MIT. Based on the original Floating Camera by Tomás Menezes (@tomasmenezes), al
 
 ---
 
-# Floating Camera 1.0.0 — Español
+# Floating Camera 1.0.1 — Español
 
 Una utilidad nativa y ligera para macOS que mantiene tu cámara flotando sobre todo lo demás. Sin icono en el Dock, sin Electron, sin cuenta y sin analíticas.
+
+## Novedades de 1.0.1
+
+- **Clic derecho o toque con dos dedos** sobre el overlay: Ocultar cámara, Restablecer posición y Salir.
+- **Color rojo** en Borde → Color.
+- El menú contextual activa la app de forma fiable aunque otra app tenga el foco.
 
 ## Descargar e instalar
 
@@ -98,7 +110,7 @@ Haz clic en el icono de apertura de la barra de menús.
 - **Ocultar cámara** — oculta el overlay y detiene la captura. Atajo global: `⌃⌥H`.
 - **Salir** — cierra la app.
 
-Arrastra dentro del overlay para moverlo. **Restablecer posición** lo centra en la pantalla actual.
+Arrastra dentro del overlay para moverlo. **Restablecer posición** lo centra en la pantalla actual. Haz clic derecho sobre el overlay (o toca con dos dedos) para **Ocultar cámara**, **Restablecer posición** y **Salir de Floating Camera**.
 
 El idioma sigue a macOS por defecto. Puedes forzar **English** o **Español** en **Avanzado → Idioma**.
 

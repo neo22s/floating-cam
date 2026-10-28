@@ -152,6 +152,7 @@ enum BorderColor: String, CaseIterable, Codable {
     case white
     case black
     case gray
+    case red
     case blue
     case green
     case pink
@@ -163,6 +164,7 @@ enum BorderColor: String, CaseIterable, Codable {
         case .white: return L10n.s("White", "Blanco")
         case .black: return L10n.s("Black", "Negro")
         case .gray: return L10n.s("Gray", "Gris")
+        case .red: return L10n.s("Red", "Rojo")
         case .blue: return L10n.s("Blue", "Azul")
         case .green: return L10n.s("Green", "Verde")
         case .pink: return L10n.s("Pink", "Rosa")
@@ -176,6 +178,7 @@ enum BorderColor: String, CaseIterable, Codable {
         case .white: return .white
         case .black: return .black
         case .gray: return NSColor(srgbRed: 0.62, green: 0.62, blue: 0.62, alpha: 1)
+        case .red: return NSColor(srgbRed: 0.95, green: 0.20, blue: 0.20, alpha: 1)
         case .blue: return NSColor(srgbRed: 0.30, green: 0.62, blue: 1.00, alpha: 1)
         case .green: return NSColor(srgbRed: 0.30, green: 0.84, blue: 0.47, alpha: 1)
         case .pink: return NSColor(srgbRed: 1.00, green: 0.40, blue: 0.62, alpha: 1)

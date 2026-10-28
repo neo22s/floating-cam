@@ -2,55 +2,55 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-    <key>CFBundleDevelopmentRegion</key>
-    <string>en</string>
-    <key>CFBundleDisplayName</key>
-    <string>Floating Camera</string>
-    <key>CFBundleExecutable</key>
-    <string>FloatingCamera</string>
-    <key>CFBundleIconFile</key>
-    <string>AppIcon</string>
-    <key>CFBundleIconName</key>
-    <string>AppIcon</string>
-    <key>CFBundleIdentifier</key>
-    <string>com.floatingcamera.app</string>
-    <key>CFBundleInfoDictionaryVersion</key>
-    <string>6.0</string>
-    <key>CFBundleName</key>
-    <string>Floating Camera</string>
-    <key>CFBundlePackageType</key>
-    <string>APPL</string>
-    <key>CFBundleShortVersionString</key>
-    <string>1.0.0</string>
-    <key>CFBundleSignature</key>
-    <string>FCAM</string>
-    <key>CFBundleVersion</key>
-    <string>1</string>
-    <key>LSApplicationCategoryType</key>
-    <string>public.app-category.utilities</string>
-    <key>FCGitHubOwner</key>
-    <string>__GITHUB_OWNER__</string>
-    <key>FCGitHubRepo</key>
-    <string>__GITHUB_REPO__</string>
-    <key>LSMinimumSystemVersion</key>
-    <string>14.0</string>
-    <key>LSMultipleInstancesProhibited</key>
-    <true/>
-    <key>LSUIElement</key>
-    <true/>
-    <key>NSCameraUsageDescription</key>
-    <string>Floating Camera needs camera access to show the floating preview.</string>
-    <key>NSHighResolutionCapable</key>
-    <true/>
-    <key>NSHumanReadableCopyright</key>
-    <string>MIT License. Based on Floating Camera by Tomás Menezes.</string>
-    <key>NSPrincipalClass</key>
-    <string>NSApplication</string>
-    <key>NSRequiresAquaSystemAppearance</key>
-    <false/>
-    <key>NSSupportsAutomaticTermination</key>
-    <false/>
-    <key>NSSupportsSuddenTermination</key>
-    <false/>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>en</string>
+	<key>CFBundleDisplayName</key>
+	<string>Floating Camera</string>
+	<key>CFBundleExecutable</key>
+	<string>FloatingCamera</string>
+	<key>CFBundleIconFile</key>
+	<string>AppIcon</string>
+	<key>CFBundleIconName</key>
+	<string>AppIcon</string>
+	<key>CFBundleIdentifier</key>
+	<string>com.floatingcamera.app</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>Floating Camera</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1.0.1</string>
+	<key>CFBundleSignature</key>
+	<string>FCAM</string>
+	<key>CFBundleVersion</key>
+	<string>2</string>
+	<key>FCGitHubOwner</key>
+	<string>__GITHUB_OWNER__</string>
+	<key>FCGitHubRepo</key>
+	<string>__GITHUB_REPO__</string>
+	<key>LSApplicationCategoryType</key>
+	<string>public.app-category.utilities</string>
+	<key>LSMinimumSystemVersion</key>
+	<string>14.0</string>
+	<key>LSMultipleInstancesProhibited</key>
+	<true/>
+	<key>LSUIElement</key>
+	<true/>
+	<key>NSCameraUsageDescription</key>
+	<string>Floating Camera needs camera access to show the floating preview.</string>
+	<key>NSHighResolutionCapable</key>
+	<true/>
+	<key>NSHumanReadableCopyright</key>
+	<string>MIT License. Based on Floating Camera by Tomás Menezes.</string>
+	<key>NSPrincipalClass</key>
+	<string>NSApplication</string>
+	<key>NSRequiresAquaSystemAppearance</key>
+	<false/>
+	<key>NSSupportsAutomaticTermination</key>
+	<false/>
+	<key>NSSupportsSuddenTermination</key>
+	<false/>
 </dict>
 </plist>

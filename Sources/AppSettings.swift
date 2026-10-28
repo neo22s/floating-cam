@@ -41,7 +41,12 @@ enum OverlayShape: String, CaseIterable, Codable {
     }
 
     var allowsCornerRadius: Bool {
-        self == .rectangle || self == .roundedSquare
+        switch self {
+        case .rectangle, .roundedSquare, .square:
+            return true
+        default:
+            return false
+        }
     }
 }
 

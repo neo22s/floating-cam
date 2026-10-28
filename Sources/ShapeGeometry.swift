@@ -13,7 +13,7 @@ enum ShapeGeometry {
         case .roundedSquare:
             return roundedRect(rect, radius: cornerRadius)
         case .square:
-            return CGPath(rect: rect, transform: nil)
+            return roundedRect(rect, radius: cornerRadius)
         case .circle:
             return CGPath(ellipseIn: rect, transform: nil)
         case .capsule:

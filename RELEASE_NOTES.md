@@ -6,6 +6,7 @@ A lightweight, native macOS menu bar app that keeps your camera floating above e
 
 - **Right-click or two-finger tap** the overlay for Hide Camera, Reset Position and Quit.
 - **Red** added to Border → Color.
+- **Square** now supports the **Rounding** slider (set it to 0 for sharp corners).
 - Reliable context-menu activation while another app is focused.
 
 ![Floating Camera shapes](https://raw.githubusercontent.com/neo22s/floating-cam/master/assets/shapes.png)
@@ -79,6 +80,7 @@ Una utilidad nativa y ligera para macOS que mantiene tu cámara flotando sobre t
 
 - **Clic derecho o toque con dos dedos** sobre el overlay: Ocultar cámara, Restablecer posición y Salir.
 - **Color rojo** en Borde → Color.
+- **Cuadrado** ahora admite el slider de **Redondeo** (ponlo a 0 para esquinas rectas).
 - El menú contextual activa la app de forma fiable aunque otra app tenga el foco.
 
 ## Descargar e instalar

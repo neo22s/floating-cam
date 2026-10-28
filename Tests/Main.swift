@@ -169,6 +169,9 @@ struct TestMain {
             check(box.minY >= rect.minY - 1 && box.maxY <= rect.maxY + 1, "path y bounds: \(shape.rawValue)")
         }
 
+        check(OverlayShape.square.allowsCornerRadius, "square allows rounding")
+        check(OverlayShape.circle.allowsCornerRadius == false, "circle has no rounding slider")
+
         let circle = ShapeGeometry.path(for: .circle, in: rect, cornerRadius: 0)
         equal(circle.boundingBoxOfPath, rect, "circle bounding box")
         let square = ShapeGeometry.path(for: .square, in: rect, cornerRadius: 0)

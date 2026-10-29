@@ -8,11 +8,13 @@
 
 <p align="center">macOS 14+ · Swift + AppKit · No dependencies · MIT</p>
 
-![Floating Camera shapes](assets/shapes.png)
+![Floating Camera floating over a desktop](assets/hero.png)
 
 ## Features
 
 - **11 shapes**: Rectangle, Vertical Rectangle, Rounded Square, Square, Circle, Heart, Star, Hexagon, Pentagon, Diamond, Capsule.
+
+![All eleven Floating Camera shapes](assets/shapes.png)
 - **Size slider** from 160 to 800 pt, keeping the selected shape's aspect ratio.
 - **Zoom** the image inside the shape from 100% to 300%.
 - **English or Spanish UI**, following macOS by default.

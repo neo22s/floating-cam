@@ -6,6 +6,7 @@ import Foundation
 
 enum OverlayShape: String, CaseIterable, Codable {
     case rectangle
+    case verticalRectangle
     case roundedSquare
     case square
     case circle
@@ -19,6 +20,7 @@ enum OverlayShape: String, CaseIterable, Codable {
     var title: String {
         switch self {
         case .rectangle: return L10n.s("Rectangle", "Rectángulo")
+        case .verticalRectangle: return L10n.s("Vertical Rectangle", "Rectángulo vertical")
         case .roundedSquare: return L10n.s("Rounded Square", "Cuadrado redondeado")
         case .square: return L10n.s("Square", "Cuadrado")
         case .circle: return L10n.s("Circle", "Círculo")
@@ -35,6 +37,7 @@ enum OverlayShape: String, CaseIterable, Codable {
     var fixedAspect: CGFloat? {
         switch self {
         case .rectangle: return nil
+        case .verticalRectangle: return 9.0 / 16.0
         case .capsule: return 1.5
         default: return 1
         }
@@ -42,7 +45,7 @@ enum OverlayShape: String, CaseIterable, Codable {
 
     var allowsCornerRadius: Bool {
         switch self {
-        case .rectangle, .roundedSquare, .square:
+        case .rectangle, .verticalRectangle, .roundedSquare, .square:
             return true
         default:
             return false

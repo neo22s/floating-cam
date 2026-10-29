@@ -10,6 +10,8 @@ enum ShapeGeometry {
         switch shape {
         case .rectangle:
             return roundedRect(rect, radius: cornerRadius)
+        case .verticalRectangle:
+            return roundedRect(rect, radius: cornerRadius)
         case .roundedSquare:
             return roundedRect(rect, radius: cornerRadius)
         case .square:

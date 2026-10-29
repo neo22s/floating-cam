@@ -12,11 +12,11 @@
 
 ## Features
 
-- **10 shapes**: Rectangle, Rounded Square, Square, Circle, Heart, Star, Hexagon, Pentagon, Diamond, Capsule.
+- **11 shapes**: Rectangle, Vertical Rectangle, Rounded Square, Square, Circle, Heart, Star, Hexagon, Pentagon, Diamond, Capsule.
 - **Size slider** from 160 to 800 pt, keeping the selected shape's aspect ratio.
 - **Zoom** the image inside the shape from 100% to 300%.
 - **English or Spanish UI**, following macOS by default.
-- **Border** width/color, **opacity**, and **rounding** (Rectangle, Rounded Square and Square).
+- **Border** width/color, **opacity**, and **rounding** (Rectangle, Vertical Rectangle, Rounded Square and Square).
 - **Camera** selection, **480p / 720p / 1080p** capture (720p by default), and **15/24/30/60 fps** (30 fps by default).
 - **Mirror**, **Always on Top**, all Spaces, and full-screen support.
 - Drag to move; **Reset Position** centers the overlay on the current screen.
@@ -65,11 +65,11 @@ Allow camera access on first launch. Click the aperture icon in the menu bar.
 | Menu | Action |
 | --- | --- |
 | Camera ▸ | Choose the active camera. |
-| Shape ▸ | Choose one of ten shapes. |
+| Shape ▸ | Choose one of eleven shapes. |
 | Border ▸ | Width and color. |
 | Size | Resize the overlay from 160 to 800 pt. |
 | Opacity | Overlay opacity, 10–100%. |
-| Rounding | Rounds Rectangle, Rounded Square and Square. Shown only for those shapes. |
+| Rounding | Rounds Rectangle, Vertical Rectangle, Rounded Square and Square. Shown only for those shapes. |
 | Zoom | Digital crop of the camera image, 100–300%. |
 | Advanced ▸ | Resolution, Frame Rate, Mirror, Always on Top, Reset Position, Check for Updates and Language. |
 | Hide / Show Camera | Toggles the overlay and stops/restarts the camera session. |

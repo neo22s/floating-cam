@@ -1,10 +1,10 @@
-# Floating Camera 1.2.0
+# Floating Camera 1.3.0
 
 A lightweight, native macOS menu bar app that keeps your camera floating above everything else. No Dock icon, no Electron, no account, no analytics.
 
-## What's new in 1.2.0
+## What's new in 1.3.0
 
-- **4K capture** (3840 × 2160) for cameras that support it, such as Continuity Camera or a 4K USB webcam. It is greyed out when the active camera cannot deliver it, and the app always falls back to the best preset the camera does support.
+- **Resize from the overlay**: drag the invisible 20 pt band centered on the shape's perimeter to scale the camera from 160 to 800 pt around its center, keeping the shape's aspect ratio. The new size is saved with the position and the menu bar slider follows it. The pointer turns into a directional resize cursor over the band, for all eleven shapes including Circle, Heart and Star. The overlay stays on screen while it grows. Thanks to [@jesusdiez](https://github.com/jesusdiez).
 
 ![Floating Camera shapes](https://raw.githubusercontent.com/neo22s/floating-cam/master/assets/shapes.png)
 
@@ -29,7 +29,7 @@ The aperture icon appears in the menu bar. Click it to open the menu.
 - **Camera** — choose the active camera.
 - **Shape** — Circle, Rounded Square, Rectangle, Vertical Rectangle, Square, Heart, Star, Hexagon, Pentagon, Diamond or Capsule.
 - **Border** — width and color.
-- **Size** — resize from 160 to 800 pt. The shape keeps its aspect ratio.
+- **Size** — resize from 160 to 800 pt with the slider or by dragging the shape's perimeter. The shape keeps its aspect ratio.
 - **Opacity** — 10–100%.
 - **Rounding** — rounds Rectangle, Vertical Rectangle, Rounded Square and Square. It only appears for those shapes.
 - **Zoom** — crop the image inside the shape from 100% to 300%.
@@ -37,7 +37,7 @@ The aperture icon appears in the menu bar. Click it to open the menu.
 - **Hide Camera** — hides the overlay and stops the capture session. Use `⌃⌥H` from anywhere.
 - **Quit** — quits the app.
 
-Drag anywhere inside the overlay to move it. **Reset Position** centers it on the current screen. Right-click the overlay (or use a two-finger tap) for **Hide Camera**, **Reset Position** and **Quit Floating Camera**.
+Drag anywhere inside the overlay to move it, or drag its perimeter to resize it. **Reset Position** centers it on the current screen. Right-click the overlay (or use a two-finger tap) for **Hide Camera**, **Reset Position** and **Quit Floating Camera**.
 
 The UI follows macOS by default. You can force **English** or **Español** in **Advanced → Language**.
 
@@ -70,13 +70,13 @@ MIT. Based on the original Floating Camera by Tomás Menezes (@tomasmenezes), al
 
 ---
 
-# Floating Camera 1.2.0 — Español
+# Floating Camera 1.3.0 — Español
 
 Una utilidad nativa y ligera para macOS que mantiene tu cámara flotando sobre todo lo demás. Sin icono en el Dock, sin Electron, sin cuenta y sin analíticas.
 
-## Novedades de 1.2.0
+## Novedades de 1.3.0
 
-- **Captura en 4K** (3840 × 2160) en cámaras que lo admiten, como Continuity Camera o una webcam USB 4K. Aparece en gris cuando la cámara activa no puede ofrecerlo, y la app siempre cae en el mejor preset que la cámara sí soporte.
+- **Redimensiona desde el propio overlay**: arrastra la banda invisible de 20 pt centrada en el perímetro de la forma para escalar la cámara de 160 a 800 pt alrededor de su centro, manteniendo la proporción. El tamaño se guarda junto a la posición y el slider de la barra de menús lo refleja. El puntero cambia al cursor de redimensionar sobre la banda, en las once formas, incluidos Círculo, Corazón y Estrella. El overlay no se sale de la pantalla al crecer. Gracias a [@jesusdiez](https://github.com/jesusdiez).
 
 ## Descargar e instalar
 
@@ -99,7 +99,7 @@ Haz clic en el icono de apertura de la barra de menús.
 - **Cámara** — elige la cámara activa.
 - **Forma** — Círculo, Cuadrado redondeado, Rectángulo, Rectángulo vertical, Cuadrado, Corazón, Estrella, Hexágono, Pentágono, Diamante o Cápsula.
 - **Borde** — grosor y color.
-- **Tamaño** — de 160 a 800 pt. La forma mantiene su proporción.
+- **Tamaño** — de 160 a 800 pt, con el slider o arrastrando el perímetro de la forma. La forma mantiene su proporción.
 - **Opacidad** — de 10% a 100%.
 - **Redondeo** — redondea Rectángulo, Rectángulo vertical, Cuadrado redondeado y Cuadrado. Solo aparece con esas formas.
 - **Zoom** — recorta la imagen dentro de la forma, de 100% a 300%.
@@ -107,7 +107,7 @@ Haz clic en el icono de apertura de la barra de menús.
 - **Ocultar cámara** — oculta el overlay y detiene la captura. Atajo global: `⌃⌥H`.
 - **Salir** — cierra la app.
 
-Arrastra dentro del overlay para moverlo. **Restablecer posición** lo centra en la pantalla actual. Haz clic derecho sobre el overlay (o toca con dos dedos) para **Ocultar cámara**, **Restablecer posición** y **Salir de Floating Camera**.
+Arrastra dentro del overlay para moverlo, o por su perímetro para redimensionarlo. **Restablecer posición** lo centra en la pantalla actual. Haz clic derecho sobre el overlay (o toca con dos dedos) para **Ocultar cámara**, **Restablecer posición** y **Salir de Floating Camera**.
 
 El idioma sigue a macOS por defecto. Puedes forzar **English** o **Español** en **Avanzado → Idioma**.
 

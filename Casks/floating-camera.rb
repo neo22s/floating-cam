@@ -1,6 +1,6 @@
 cask "floating-camera" do
-  version "1.2.0"
-  sha256 "181329d70c0d7d807a5ebef4fa64f6d76d8dd9062cf6ace562548649ad140fe4"
+  version "1.3.0"
+  sha256 "5a66e655bb099f89a8b83b87c669b86edabce813abbff0c40ab2348f39b6824f"
 
   url "https://github.com/neo22s/floating-cam/releases/download/v#{version}/FloatingCamera.zip"
   name "Floating Camera"

@@ -155,6 +155,10 @@ final class OverlayView: NSView {
     }
 
     private static let resizeCursors: [NSCursor] = {
+        // NSCursor.frameResize requires the macOS 15 SDK. The deployment target stays at
+        // macOS 14, so guard the whole branch: `#available` alone does not compile with an
+        // older SDK.
+        #if compiler(>=6.0)
         if #available(macOS 15.0, *) {
             let positions: [NSCursor.FrameResizePosition] = [.right, .topRight, .top, .topLeft]
             return positions.map { position in
@@ -162,6 +166,7 @@ final class OverlayView: NSView {
                 return NSCursor(image: cursor.image, hotSpot: cursor.hotSpot)
             }
         }
+        #endif
         return [.resizeLeftRight, diagonalCursors[0], .resizeUpDown, diagonalCursors[1]]
     }()
 

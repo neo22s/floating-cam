@@ -20,6 +20,18 @@ enum OverlayGeometry {
                       width: size.width, height: size.height)
     }
 
+    /// Resizes the frame and keeps it on screen, matching what the size slider does.
+    static func resizedFrame(
+        _ frame: NSRect,
+        from point: CGPoint,
+        delta: CGPoint,
+        within visibleFrame: NSRect?
+    ) -> NSRect {
+        let resized = resizedFrame(frame, from: point, delta: delta)
+        guard let visibleFrame else { return resized }
+        return clampedFrame(resized, within: visibleFrame)
+    }
+
     static func aspect(for settings: AppSettings, cameraAspect: CGSize) -> CGFloat {
         if let fixed = settings.shape.fixedAspect {
             return max(0.1, fixed)

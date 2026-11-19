@@ -300,7 +300,7 @@ final class AppController {
         }
         controller.onResize = { [weak self] frame in
             guard let self else { return }
-            self.settings.customWidth = Double(frame.width)
+            self.settings.customWidth = Double(frame.width.rounded())
             self.settings.setOrigin(frame.origin)
             self.saveSoon()
         }

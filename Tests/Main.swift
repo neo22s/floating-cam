@@ -254,6 +254,45 @@ struct TestMain {
             }
             equal(OverlayGeometry.resizedFrame(frame, from: CGPoint(x: frame.midX, y: frame.midY), delta: .zero), frame, "center cannot start resizing")
         }
+
+        // The drag keeps the overlay on screen, like the size slider does.
+        let screen = NSRect(x: 0, y: 0, width: 1200, height: 800)
+        let rightEdge = NSRect(x: screen.maxX - 320, y: 200, width: 320, height: 320)
+        let grownRight = OverlayGeometry.resizedFrame(
+            rightEdge, from: CGPoint(x: rightEdge.maxX, y: rightEdge.midY),
+            delta: CGPoint(x: 400, y: 0), within: screen)
+        equal(grownRight.width, 800, "clamped drag keeps the requested size")
+        equal(grownRight.maxX, screen.maxX, "clamped drag stays inside the right edge")
+
+        let bottomEdge = NSRect(x: 400, y: screen.minY, width: 320, height: 320)
+        let grownBottom = OverlayGeometry.resizedFrame(
+            bottomEdge, from: CGPoint(x: bottomEdge.midX, y: bottomEdge.minY),
+            delta: CGPoint(x: 0, y: -200), within: screen)
+        equal(grownBottom.minY, screen.minY, "clamped drag stays inside the bottom edge")
+
+        let centered = NSRect(x: 400, y: 240, width: 320, height: 320)
+        let fitted = OverlayGeometry.resizedFrame(
+            centered, from: CGPoint(x: centered.maxX, y: centered.midY),
+            delta: CGPoint(x: 20, y: 0), within: screen)
+        equal(fitted, OverlayGeometry.resizedFrame(
+            centered, from: CGPoint(x: centered.maxX, y: centered.midY),
+            delta: CGPoint(x: 20, y: 0)), "a frame that fits is not moved")
+        equal(OverlayGeometry.resizedFrame(
+            centered, from: CGPoint(x: centered.maxX, y: centered.midY),
+            delta: CGPoint(x: 20, y: 0), within: nil), fitted, "no screen means no clamping")
+
+        // The drag applies that clamp to the real window.
+        if let visible = (controller.screen ?? NSScreen.main)?.visibleFrame {
+            let edge = NSRect(x: visible.maxX - 320, y: visible.midY - 160, width: 320, height: 320)
+            controller.setFrame(edge)
+            view.layoutSubtreeIfNeeded()
+            view.mouseDown(with: event(.leftMouseDown, at: CGPoint(x: 335, y: 170)))
+            view.mouseDragged(with: event(.leftMouseDragged, at: CGPoint(x: 535, y: 170)))
+            let dragged = controller.windowFrame
+            check(dragged.width > 320, "dragging a resize near the screen edge grows")
+            check(dragged.maxX <= visible.maxX + 0.5, "dragging a resize keeps the overlay on screen")
+            view.mouseUp(with: event(.leftMouseUp, at: CGPoint(x: 535, y: 170)))
+        }
     }
 
     static func testShapePaths() {

@@ -110,7 +110,12 @@ final class OverlayView: NSView {
         guard let drag = resizeDrag, let window else { return }
         let mouse = window.convertPoint(toScreen: event.locationInWindow)
         let delta = CGPoint(x: mouse.x - drag.mouse.x, y: mouse.y - drag.mouse.y)
-        let frame = OverlayGeometry.resizedFrame(drag.frame, from: drag.mouse, delta: delta)
+        let frame = OverlayGeometry.resizedFrame(
+            drag.frame,
+            from: drag.mouse,
+            delta: delta,
+            within: (window.screen ?? NSScreen.main)?.visibleFrame
+        )
         let margin = OverlayGeometry.resizeMargin
         window.setFrame(frame.insetBy(dx: -margin, dy: -margin), display: true)
         window.invalidateShadow()

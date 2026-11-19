@@ -14,8 +14,11 @@ final class OverlayWindowController: NSWindowController, NSWindowDelegate {
     private var settings: AppSettings
 
     var onContextMenu: (() -> NSMenu?)?
+    var onResize: ((NSRect) -> Void)?
 
-    var windowFrame: NSRect { window?.frame ?? .zero }
+    var windowFrame: NSRect {
+        window?.frame.insetBy(dx: OverlayGeometry.resizeMargin, dy: OverlayGeometry.resizeMargin) ?? .zero
+    }
     var screen: NSScreen? { window?.screen ?? NSScreen.main }
 
     init(
@@ -29,7 +32,7 @@ final class OverlayWindowController: NSWindowController, NSWindowDelegate {
         self.overlayView = OverlayView(session: session, settings: settings)
 
         let panel = OverlayPanel(
-            contentRect: frame,
+            contentRect: frame.insetBy(dx: -OverlayGeometry.resizeMargin, dy: -OverlayGeometry.resizeMargin),
             styleMask: [.borderless],
             backing: .buffered,
             defer: false
@@ -47,6 +50,7 @@ final class OverlayWindowController: NSWindowController, NSWindowDelegate {
         panel.backgroundColor = .clear
         panel.hasShadow = true
         panel.isMovableByWindowBackground = false
+        panel.acceptsMouseMovedEvents = true
         panel.level = settings.isAlwaysOnTop ? .floating : .normal
         panel.alphaValue = CGFloat(settings.opacity)
         panel.collectionBehavior = [
@@ -58,6 +62,10 @@ final class OverlayWindowController: NSWindowController, NSWindowDelegate {
 
         overlayView.onContextMenu = { [weak self] in
             self?.onContextMenu?()
+        }
+        overlayView.onResizeEnded = { [weak self] in
+            guard let self else { return }
+            self.onResize?(self.windowFrame)
         }
     }
 
@@ -74,7 +82,7 @@ final class OverlayWindowController: NSWindowController, NSWindowDelegate {
     }
 
     func setFrame(_ frame: NSRect) {
-        window?.setFrame(frame, display: true)
+        window?.setFrame(frame.insetBy(dx: -OverlayGeometry.resizeMargin, dy: -OverlayGeometry.resizeMargin), display: true)
         window?.invalidateShadow()
     }
 
@@ -103,7 +111,7 @@ final class OverlayWindowController: NSWindowController, NSWindowDelegate {
     }
 
     func windowDidMove(_ notification: Notification) {
-        guard let origin = window?.frame.origin else { return }
-        onOriginChanged(origin)
+        guard window != nil else { return }
+        onOriginChanged(windowFrame.origin)
     }
 }

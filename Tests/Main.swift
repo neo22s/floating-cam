@@ -1,6 +1,7 @@
 // Floating Camera — MIT License. See LICENSE.
 
 import AppKit
+import AVFoundation
 import Darwin
 import Foundation
 
@@ -25,6 +26,7 @@ struct TestMain {
         testSettings()
         testSettingsStore()
         testOverlayGeometry()
+        testOverlayResize()
         testShapePaths()
         testLocalization()
         testFrameRateSelection()
@@ -156,6 +158,93 @@ struct TestMain {
         equal(OverlayGeometry.clampedFrame(offscreen, within: visible), NSRect(x: 0, y: 95, width: 320, height: 320), "clamp top-left")
         let bottomRight = NSRect(x: 1400, y: 900, width: 320, height: 320)
         equal(OverlayGeometry.clampedFrame(bottomRight, within: visible), NSRect(x: 1150, y: 603, width: 320, height: 320), "clamp bottom-right")
+    }
+
+    static func testOverlayResize() {
+        _ = NSApplication.shared
+        var settings = AppSettings()
+        settings.shape = .circle
+        let initial = NSRect(x: 100, y: 200, width: 320, height: 320)
+        let controller = OverlayWindowController(
+            session: AVCaptureSession(), settings: settings, frame: initial,
+            onOriginChanged: { _ in }
+        )
+        let window = controller.window!
+        let view = window.contentView as! OverlayView
+        view.layoutSubtreeIfNeeded()
+        equal(controller.windowFrame, initial, "resize margin preserves camera size and position")
+        check(view.isInResizeBand(CGPoint(x: 325, y: 170)), "circle band includes inner half")
+        check(view.isInResizeBand(CGPoint(x: 335, y: 170)), "circle band includes outer half")
+        check(!view.isInResizeBand(CGPoint(x: 310, y: 170)), "circle interior remains movable")
+        check(!view.isInResizeBand(CGPoint(x: 15, y: 15)), "circle bounding corner does not resize")
+        check(!view.isInResizeBand(CGPoint(x: 345, y: 170)), "outside the band does not resize")
+
+        var resizedFrame: NSRect?
+        controller.onResize = { resizedFrame = $0 }
+        func event(_ type: NSEvent.EventType, at point: CGPoint) -> NSEvent {
+            NSEvent.mouseEvent(with: type, location: point, modifierFlags: [], timestamp: 0,
+                               windowNumber: window.windowNumber, context: nil,
+                               eventNumber: 0, clickCount: 1, pressure: 1)!
+        }
+        view.mouseMoved(with: event(.mouseMoved, at: CGPoint(x: 335, y: 170)))
+        check(NSCursor.current != NSCursor.arrow, "hovering resize band changes cursor")
+        view.mouseMoved(with: event(.mouseMoved, at: CGPoint(x: 170, y: 170)))
+        equal(NSCursor.current, NSCursor.arrow, "hovering interior restores arrow cursor")
+        for x: CGFloat in [325, 335] {
+            controller.setFrame(initial)
+            view.layoutSubtreeIfNeeded()
+            resizedFrame = nil
+            view.mouseDown(with: event(.leftMouseDown, at: CGPoint(x: x, y: 170)))
+            view.mouseDragged(with: event(.leftMouseDragged, at: CGPoint(x: x + 40, y: 170)))
+            let frame = controller.windowFrame
+            check(frame.width > 320, "both halves of the band resize: \(x)")
+            equal(frame.width, frame.height, "circle stays circular")
+            check(abs(frame.midX - initial.midX) <= 0.5 && abs(frame.midY - initial.midY) <= 0.5,
+                  "resize preserves center within AppKit pixel rounding")
+            check(resizedFrame == nil, "size is saved on release")
+            view.mouseUp(with: event(.leftMouseUp, at: CGPoint(x: 10, y: 10)))
+            equal(resizedFrame, frame, "resize reports camera size and position without margin")
+        }
+        controller.setFrame(initial)
+        for shape in OverlayShape.allCases {
+            settings.shape = shape
+            controller.apply(settings: settings)
+            view.layoutSubtreeIfNeeded()
+            if shape == .circle || shape == .heart || shape == .star {
+                check(!view.isInResizeBand(CGPoint(x: 15, y: 15)), "transparent corner does not resize: \(shape)")
+            }
+            var inside = false
+            var outside = false
+            let path = ShapeGeometry.path(for: shape, in: CGRect(x: 11, y: 11, width: 318, height: 318), cornerRadius: 16)
+            for x in stride(from: 0, through: 340, by: 5) {
+                for y in stride(from: 0, through: 340, by: 5) {
+                    let point = CGPoint(x: x, y: y)
+                    if view.isInResizeBand(point) {
+                        if path.contains(point) { inside = true } else { outside = true }
+                    }
+                }
+            }
+            check(inside && outside, "resize band straddles shape perimeter: \(shape)")
+        }
+        for aspect: CGFloat in [1, 16.0 / 9.0, 9.0 / 16.0, 1.5, 4.0 / 3.0] {
+            let frame = NSRect(x: -500, y: 200, width: 320, height: 320 / aspect)
+            for direction in [CGPoint(x: 1, y: 0), CGPoint(x: 0, y: 1), CGPoint(x: -1, y: -1)] {
+                let point = CGPoint(x: frame.midX + direction.x * frame.width / 2,
+                                    y: frame.midY + direction.y * frame.height / 2)
+                let delta = CGPoint(x: direction.x * 40, y: direction.y * 40)
+                let resized = OverlayGeometry.resizedFrame(frame, from: point, delta: delta)
+                check(resized.width > frame.width, "perimeter drag grows size: \(aspect), \(direction)")
+                check(abs(resized.width / resized.height - aspect) < 0.0001, "perimeter drag preserves aspect")
+                check(abs(resized.midX - frame.midX) < 0.0001 && abs(resized.midY - frame.midY) < 0.0001, "perimeter drag preserves center")
+                let large = OverlayGeometry.resizedFrame(frame, from: point,
+                    delta: CGPoint(x: delta.x * 100, y: delta.y * 100))
+                equal(large.width, 800, "perimeter drag maximum")
+                let small = OverlayGeometry.resizedFrame(frame, from: point,
+                    delta: CGPoint(x: -delta.x * 100, y: -delta.y * 100))
+                equal(small.width, 160, "perimeter drag minimum")
+            }
+            equal(OverlayGeometry.resizedFrame(frame, from: CGPoint(x: frame.midX, y: frame.midY), delta: .zero), frame, "center cannot start resizing")
+        }
     }
 
     static func testShapePaths() {

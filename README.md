@@ -16,6 +16,7 @@
 
 - **11 shapes**: Rectangle, Vertical Rectangle, Rounded Square, Square, Circle, Heart, Star, Hexagon, Pentagon, Diamond, Capsule.
 - **Size slider** from 160 to 800 pt, keeping the selected shape's aspect ratio.
+- **Resize directly on the overlay**: drag along the selected shape's perimeter, keeping its aspect ratio and saving the new size.
 - **Zoom** the image inside the shape from 100% to 300%.
 - **English or Spanish UI**, following macOS by default.
 - **Border** width/color, **opacity**, and **rounding** (Rectangle, Vertical Rectangle, Rounded Square and Square).
@@ -97,7 +98,7 @@ Allow camera access on first launch. Click the aperture icon in the menu bar.
 
 Resolution and Frame Rate fall back to the closest preset supported by the camera. Resolutions the active camera cannot deliver are greyed out (for example, **4K** on a built-in FaceTime camera). **Language** can be System (default), English or Español; System follows the macOS language.
 
-Drag inside the overlay to move it. Use the **Size** slider to resize; the overlay keeps the selected shape's aspect ratio. Right-click the overlay for **Hide Camera**, **Reset Position** and **Quit**. The app does not steal focus until you click the overlay.
+Drag inside the overlay to move it. Drag the 20 pt band centered on the shape's perimeter or use the **Size** slider to resize from 160 to 800 pt; the overlay scales proportionally around its center and remembers its size. The pointer changes to a directional resize cursor over the band, including for Circle, Heart and Star. The band is currently shown in pink at 50% opacity for visual verification. Right-click the overlay for **Hide Camera**, **Reset Position** and **Quit**. The app does not steal focus until you click the overlay.
 
 ### Resolution and performance
 

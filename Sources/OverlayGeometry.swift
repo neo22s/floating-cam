@@ -4,6 +4,22 @@ import AppKit
 import Foundation
 
 enum OverlayGeometry {
+    static let resizeBandWidth: CGFloat = 20
+    static let resizeMargin = resizeBandWidth / 2
+
+    static func resizedFrame(_ frame: NSRect, from point: CGPoint, delta: CGPoint) -> NSRect {
+        let dx = point.x - frame.midX
+        let dy = point.y - frame.midY
+        let distanceSquared = dx * dx + dy * dy
+        guard distanceSquared > 1 else { return frame }
+        let scale = 1 + (delta.x * dx + delta.y * dy) / distanceSquared
+        let aspect = frame.width / frame.height
+        let width = min(800, max(max(160, minimumWidth(for: aspect)), frame.width * scale))
+        let size = CGSize(width: width, height: width / aspect)
+        return NSRect(x: frame.midX - size.width / 2, y: frame.midY - size.height / 2,
+                      width: size.width, height: size.height)
+    }
+
     static func aspect(for settings: AppSettings, cameraAspect: CGSize) -> CGFloat {
         if let fixed = settings.shape.fixedAspect {
             return max(0.1, fixed)

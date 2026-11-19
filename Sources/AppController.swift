@@ -298,6 +298,12 @@ final class AppController {
         controller.onContextMenu = { [weak self] in
             self?.menu.overlayContextMenu()
         }
+        controller.onResize = { [weak self] frame in
+            guard let self else { return }
+            self.settings.customWidth = Double(frame.width)
+            self.settings.setOrigin(frame.origin)
+            self.saveSoon()
+        }
 
         overlay = controller
         settings.customWidth = Double(frame.width)
